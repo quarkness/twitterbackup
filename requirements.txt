@@ -1,0 +1,4 @@
+twitter
+simplejson
+python-dateutil==1.5
+git+https://github.com/nrcmedia/python-twitter.git#python-twitter
