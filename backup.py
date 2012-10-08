@@ -11,21 +11,20 @@ consumer_secret = ''
 access_token_key = ''
 access_token_secret = ''
 
-from settings import consumer_key, consumer_secret, access_token_key, access_token_secret
+from settings import consumer_key, consumer_secret, access_token_key, access_token_secret, database_fn, twitter_username
 
 api = twitter.Api(consumer_key=consumer_key, consumer_secret=consumer_secret, access_token_key=access_token_key, access_token_secret=access_token_secret)
 
-conn = sqlite3.connect('/Users/ivo/dev/twitterbackup/twitter.db')
+conn = sqlite3.connect(database_fn)
 c = conn.cursor()
 
-user = 'quarkness'
 count = 40
 start_page = 1
 end_page = 1
 
 for page in range(start_page, end_page+1):
 
-    statuses = api.GetUserTimeline(user, count=count, page=page)
+    statuses = api.GetUserTimeline(twitter_username, count=count, page=page)
 
     for t in statuses:
         s = t.AsDict()
